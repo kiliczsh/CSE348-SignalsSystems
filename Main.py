@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import pylab as pl
 import matplotlib.cm as cm
 import numpy as np
+import operator
 
 
 def pad_with(vector, pad_width, iaxis, kwargs):
@@ -37,35 +38,33 @@ def calculate(image,kernel):
     img_pad_sutun =  np.array(result).shape[0]
     img_pad_satir =  np.array(result).shape[1]
     #print(image)
-    #print(result)
-    #print(kernel)
+    print(result)
+    print(kernel)
 
     curSatir = kernel_satir
     curSutun = kernel_sutun
     newConvSatir = 0
-    newConvSutun = 0
-    convImg = np.zeros((image_sutun,image_satir))
-    print(curSutun, end=" - ")
-    print(curSatir, end=" ~ ")
+    newConvSutun = -1
+    convImg = np.zeros((image_sutun+kernel_sutun,image_satir+kernel_satir))
+
 
     for i in range(img_pad_sutun):
         curSatir = kernel_satir
+        newConvSutun += 1
         for j in range(img_pad_satir):
-            if i==curSutun and j==curSatir:
+            if ((i+kernel_sutun == curSutun) and (j+kernel_satir == curSatir)):
                 sum = 0
                 for k in range(kernel_sutun):
                     for l in range(kernel_satir):
-                        sum = sum + result[kernel_sutun+k][kernel_satir+l]*kernel[k][l]
+                        sum = sum + (result[kernel_sutun+k][kernel_satir+l]*kernel[k][l])
+                print(sum)
                 convImg[newConvSutun][newConvSatir] = sum
+                newConvSatir += 1
             curSatir += 1
-            print(curSatir,end=" ~ ")
         curSutun += 1
-        print()
-        print(curSutun,end=" - ")
-    print()
 
 
-    #print(convImg)
+    print(convImg)
 
 
 
