@@ -18,8 +18,8 @@ def calculate(image,kernel,paddingArgument):
     for index_height in range(table_height):
         img_height_iter += 1
         for index_width in range(table_width):
-            bound_height = (index_height > (image_height - (kernel_height - 2 )))
-            bound_width = (index_width > (image_width - (kernel_width - 2)))
+            bound_height = (index_height > ((kernel_height - 2 )))
+            bound_width = (index_width > ((kernel_width - 2)))
             if (bound_height and bound_width):
                 table[index_height][index_width] = image[index_height-1][index_width-1]
                 img_width_iter += 1
@@ -57,5 +57,5 @@ def calculate(image,kernel,paddingArgument):
 
 
 x = np.array([[1, 2, 3, 4, 5, 6],[7, 8, 9, 10, 11, 12],[13,14,15,16,17,18]])
-y = np.array([[1, -2,-3],[3,-3, 4]])
-calculate(x,y,1)
+y = np.array([[1, 2],[3, 4]])
+calculate(x,y,0)
