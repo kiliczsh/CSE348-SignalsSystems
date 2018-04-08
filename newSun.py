@@ -154,7 +154,7 @@ motion = np.array([[0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	
 
 ######################################################################
 
-x = np.array([[1, 2, 3, 4, 5, 6],
+image_sample = np.array([[1, 2, 3, 4, 5, 6],
               [2, 0, 0, 0, 0, 0],
               [3, 0, 15, 15, 16, 17],
               [4, 0, 15, 16, 17, 18],
@@ -170,10 +170,17 @@ y = np.array([[-1, -2, -3, -4],
               [-6, 0, -7, -8]])
 
 
-
-calculate(motion, reverseMatrix(motion), 1)
-#calculate(x, reverseMatrix(y), 1)
-
+calculate(image_sample, reverseMatrix(laplacian), 0)
+"""
+calculate(image_sample, reverseMatrix(laplacian), 1)
+calculate(image_sample, reverseMatrix(gaussian), 1)
+calculate(image_sample, reverseMatrix(sobel), 1)
+calculate(image_sample, reverseMatrix(motion), 1)
+calculate(image_sample, reverseMatrix(laplacian), 0)
+calculate(image_sample, reverseMatrix(gaussian), 0)
+calculate(image_sample, reverseMatrix(sobel), 0)
+calculate(image_sample, reverseMatrix(motion), 0)
+"""
 
 #pl.imshow(im, origin='lower')
 # pl.show()
