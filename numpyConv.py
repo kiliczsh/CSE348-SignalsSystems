@@ -15,7 +15,6 @@ conv_filter = np.array([[0,-1,0],
                        [0,-1,0]])
 
 
-
 m = np.einsum('ij,ijkl->kl',conv_filter,sub_matrices)
 print(a)
 print(conv_filter)

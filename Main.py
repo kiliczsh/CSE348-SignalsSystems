@@ -48,7 +48,7 @@ def calculate(image,kernel):
     convImg = np.zeros((image_sutun+kernel_sutun,image_satir+kernel_satir))
 
 
-    for i in range(img_pad_sutun):
+    for i in range(kernel_sutun,img_pad_sutun-kernel_sutun):
         curSatir = kernel_satir
         newConvSutun += 1
         for j in range(img_pad_satir):
