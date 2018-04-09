@@ -9,6 +9,9 @@ import operator
 import sys
 
 
+
+
+
 def reverseMatrix(someArray):
     numPyArray = np.array(someArray)
     reversed_numPyArr = np.fliplr(np.flipud(numPyArray))
@@ -74,12 +77,14 @@ def calculate(image, kernel, paddingArgument):
             image[index_img_height][index_img_width] = 255 * \
                 (I - I_min)/(I_max - I_min)
     print(image)
-    return
+    return image
+
 
 
 laplacian = np.array([[1/3, 1/3, 1/3 ],
                      [1/3, -8/3, 1/3],
                      [1/3, 1/3, 1/3 ]])
+
 
 gaussian = np.array([[0.036883,   0.039164,   0.039955,   0.039164,   0.036883],
                      [0.039164,   0.041586,   0.042426,   0.041586,   0.039164],
@@ -169,9 +174,17 @@ y = np.array([[-1, -2, -3, -4],
               [-4, 0, -3, -4],
               [-5, 0, -4, -5],
               [-6, 0, -7, -8]])
+image_sample = cv2.imread('7.png',0)
 
+filter_types=np.array(['laplacian','gaussian','sobel','motion'])
+filter_dict={'laplacian':laplacian,'gaussian':gaussian,'sobel':sobel,'motion':motion}
+padding_types=np.array(['zero-padding','border-replication'])
 
-calculate(image_sample, reverseMatrix(laplacian), sys.argv[1])
+for i in filter_types:
+	for j in range(2):
+		image_sample_new = calculate(image_sample, reverseMatrix(filter_dict[i]),j)
+		cv2.imwrite('output/'+i+'_'+padding_types[j]+'.png',image_sample_new)
+
 """
 calculate(image_sample, reverseMatrix(laplacian), 1)
 calculate(image_sample, reverseMatrix(gaussian), 1)
@@ -182,7 +195,6 @@ calculate(image_sample, reverseMatrix(gaussian), 0)
 calculate(image_sample, reverseMatrix(sobel), 0)
 calculate(image_sample, reverseMatrix(motion), 0)
 """
-
 #pl.imshow(im, origin='lower')
 # pl.show()
 """
