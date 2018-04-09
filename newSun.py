@@ -6,6 +6,7 @@ import pylab as pl
 import matplotlib.cm as cm
 import numpy as np
 import operator
+import sys
 
 
 def reverseMatrix(someArray):
@@ -170,7 +171,7 @@ y = np.array([[-1, -2, -3, -4],
               [-6, 0, -7, -8]])
 
 
-calculate(image_sample, reverseMatrix(laplacian), 0)
+calculate(image_sample, reverseMatrix(laplacian), sys.argv[1])
 """
 calculate(image_sample, reverseMatrix(laplacian), 1)
 calculate(image_sample, reverseMatrix(gaussian), 1)
